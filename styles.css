@@ -1,0 +1,12 @@
+img {
+    width: 200px;
+    height: 130px;
+    margin: 10px;
+    border: 1px solid gray;
+    display: block;
+    clear: right;
+}
+
+body {
+    font-family: 'Helvetica';
+}
