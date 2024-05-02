@@ -1,0 +1,43 @@
+<!DOCTYPE html> <html><head>
+        <title>6.6 // Add Photos to Gallery</title>
+    <style>img {
+    width: 200px;
+    height: 130px;
+    margin: 10px;
+    border: 1px solid gray;
+    display: block;
+    clear: right;
+}
+
+body {
+    font-family: 'Helvetica';
+}</style></head>
+    <body>
+        <h1>Add Photos to Gallery</h1>
+        <input class="photoName" placeholder="Add the photo url here">
+        <button class="addButton">Add a new photo!</button>
+        <div id="imageContainer"></div>
+        <h4>Number of photos: <span></span></h4>
+    
+<script>
+/*__POPCODESTART__*/
+var imageContainer = document.querySelector("#imageContainer");
+var imageUrls = ['https://cdn.theatlantic.com/thumbor/vDZCdxF7pRXmZIc5vpB4pFrWHKs=/559x0:2259x1700/1080x1080/media/img/mt/2017/06/shutterstock_319985324/original.jpg', 'https://www.purina.co.uk/sites/default/files/styles/ttt_image_510/public/2020-11/Hero-Small-Mobile-cats.jpg?itok=hEnG1ehe', 'https://www.pawschicago.org/fileadmin/_processed_/8/c/csm_garden1-1024x685_0438a114ad.jpg', 'https://media-be.chewy.com/wp-content/uploads/2016/12/09165949/cat-looking-at-apples.jpg'];
+
+for (var _i = 0, _imageUrls = imageUrls; _i < _imageUrls.length; _i++) {
+  var url = _imageUrls[_i];
+  var img = "<img src=" + url + ">";
+  imageContainer.insertAdjacentHTML("beforeend", img);
+} // Select the add button using a query selector
+
+
+var addButton = document.querySelector(".addButton");
+
+addButton.onclick = function () {
+  var newUrl = document.querySelector("input").value;
+  console.log(newUrl);
+  imageUrls.push(newUrl);
+  console.log(imageUrls);
+  imageContainer.insertAdjacentHTML("afterend", "<img src='" + newUrl + "'>");
+}; // Show the number of photos in the gallery
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInBvcGNvZGVQcmV2aWV3LmpzIl0sIm5hbWVzIjpbImltYWdlQ29udGFpbmVyIiwiZG9jdW1lbnQiLCJxdWVyeVNlbGVjdG9yIiwiaW1hZ2VVcmxzIiwidXJsIiwiaW1nIiwiaW5zZXJ0QWRqYWNlbnRIVE1MIiwiYWRkQnV0dG9uIiwib25jbGljayIsIm5ld1VybCIsInZhbHVlIiwiY29uc29sZSIsImxvZyIsInB1c2giXSwibWFwcGluZ3MiOiJBQUFBLElBQUlBLGNBQWMsR0FBR0MsUUFBUSxDQUFDQyxhQUFULENBQXVCLGlCQUF2QixDQUFyQjtBQUdBLElBQUlDLFNBQVMsR0FBRyxDQUNaLHFKQURZLEVBRVosMkhBRlksRUFHWiwyRkFIWSxFQUlaLDBGQUpZLENBQWhCOztBQU9BLDhCQUFnQkEsU0FBaEIsZ0NBQTJCO0FBQXRCLE1BQUlDLEdBQUcsaUJBQVA7QUFDRCxNQUFJQyxHQUFHLEdBQUcsY0FBY0QsR0FBZCxHQUFvQixHQUE5QjtBQUNBSixFQUFBQSxjQUFjLENBQUNNLGtCQUFmLENBQWtDLFdBQWxDLEVBQStDRCxHQUEvQztBQUNILEMsQ0FFRDs7O0FBRUEsSUFBSUUsU0FBUyxHQUFHTixRQUFRLENBQUNDLGFBQVQsQ0FBdUIsWUFBdkIsQ0FBaEI7O0FBQ0NLLFNBQVMsQ0FBQ0MsT0FBVixHQUFvQixZQUFXO0FBQ2hDLE1BQUlDLE1BQU0sR0FBRVIsUUFBUSxDQUFDQyxhQUFULENBQXVCLE9BQXZCLEVBQWdDUSxLQUE1QztBQUNLQyxFQUFBQSxPQUFPLENBQUNDLEdBQVIsQ0FBWUgsTUFBWjtBQUNBTixFQUFBQSxTQUFTLENBQUNVLElBQVYsQ0FBZUosTUFBZjtBQUNBRSxFQUFBQSxPQUFPLENBQUNDLEdBQVIsQ0FBWVQsU0FBWjtBQUNBSCxFQUFBQSxjQUFjLENBQUNNLGtCQUFmLENBQW1DLFVBQW5DLEVBQWdELGVBQWVHLE1BQWYsR0FBd0IsSUFBeEU7QUFDSixDQU5BLEMsQ0FRRCIsInNvdXJjZXNDb250ZW50IjpbImxldCBpbWFnZUNvbnRhaW5lciA9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCIjaW1hZ2VDb250YWluZXJcIik7XG5cblxubGV0IGltYWdlVXJscyA9IFtcbiAgICAnaHR0cHM6Ly9jZG4udGhlYXRsYW50aWMuY29tL3RodW1ib3IvdkRaQ2R4RjdwUlhtWkljNXZwQjRwRnJXSEtzPS81NTl4MDoyMjU5eDE3MDAvMTA4MHgxMDgwL21lZGlhL2ltZy9tdC8yMDE3LzA2L3NodXR0ZXJzdG9ja18zMTk5ODUzMjQvb3JpZ2luYWwuanBnJyxcbiAgICAnaHR0cHM6Ly93d3cucHVyaW5hLmNvLnVrL3NpdGVzL2RlZmF1bHQvZmlsZXMvc3R5bGVzL3R0dF9pbWFnZV81MTAvcHVibGljLzIwMjAtMTEvSGVyby1TbWFsbC1Nb2JpbGUtY2F0cy5qcGc/aXRvaz1oRW5HMWVoZScsXG4gICAgJ2h0dHBzOi8vd3d3LnBhd3NjaGljYWdvLm9yZy9maWxlYWRtaW4vX3Byb2Nlc3NlZF8vOC9jL2NzbV9nYXJkZW4xLTEwMjR4Njg1XzA0MzhhMTE0YWQuanBnJyxcbiAgICAnaHR0cHM6Ly9tZWRpYS1iZS5jaGV3eS5jb20vd3AtY29udGVudC91cGxvYWRzLzIwMTYvMTIvMDkxNjU5NDkvY2F0LWxvb2tpbmctYXQtYXBwbGVzLmpwZydcbl07XG5cbmZvciAobGV0IHVybCBvZiBpbWFnZVVybHMpIHtcbiAgICBsZXQgaW1nID0gXCI8aW1nIHNyYz1cIiArIHVybCArIFwiPlwiO1xuICAgIGltYWdlQ29udGFpbmVyLmluc2VydEFkamFjZW50SFRNTChcImJlZm9yZWVuZFwiLCBpbWcpO1xufVxuXG4vLyBTZWxlY3QgdGhlIGFkZCBidXR0b24gdXNpbmcgYSBxdWVyeSBzZWxlY3RvclxuXG5sZXQgYWRkQnV0dG9uID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcihcIi5hZGRCdXR0b25cIik7XG4gYWRkQnV0dG9uLm9uY2xpY2sgPSBmdW5jdGlvbigpIHtcbmxldCBuZXdVcmw9IGRvY3VtZW50LnF1ZXJ5U2VsZWN0b3IoXCJpbnB1dFwiKS52YWx1ZTtcbiAgICAgY29uc29sZS5sb2cobmV3VXJsKTtcbiAgICAgaW1hZ2VVcmxzLnB1c2gobmV3VXJsKTtcbiAgICAgY29uc29sZS5sb2coaW1hZ2VVcmxzKTtcbiAgICAgaW1hZ2VDb250YWluZXIuaW5zZXJ0QWRqYWNlbnRIVE1MIChcImFmdGVyZW5kXCIgLCBcIjxpbWcgc3JjPSdcIiArIG5ld1VybCArIFwiJz5cIik7XG59O1xuXG4vLyBTaG93IHRoZSBudW1iZXIgb2YgcGhvdG9zIGluIHRoZSBnYWxsZXJ5Il19</script></body></html>
